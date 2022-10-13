@@ -1,17 +1,25 @@
-let container=document.querySelector(".container")
-let listElm=document.querySelector(".infinte-scroll");
-alert ("The Dom Content Loding")
-function loadMore()
-quotes.forEach((elm)=>{
+let root = document.querySelector('ul');
 
-    let parentDiv=document.createElement("div");
-    parentDiv.classList.add("parentDiv");
-    let quote = document.createElement('h2');
-    quote.innerText = elm.quoteText;
-    let author = document.createElement('span');
-    author.innerText = `author => ${elm.quoteAuthor}`;
-    
-    parentDiv.append(quote,author);
-    listElm.append(parentDiv);
+let max = 3;
 
-});
+function addQuotes(){
+    for (let i=0; i<max; i++){
+        let li = document.createElement('li')
+        let blockQuote = document.createElement('cite');
+        blockQuote.innerText = quotes[index].quoteText;
+        cite.innerText=quotes[index].quoteAuthor;
+        li.append(blockQuote,cite);
+    }
+}
+
+addQuotes();
+
+document.addEventListener('scroll',()=>{
+    let scrollTop = document.documentElement.scrollTop;
+    let scrollHeight = document.documentElement.scrollHeight;
+    let clientHeight = document.documentElement.clientHeight ;
+    if(scrollTop + clientHeight >= scrollHeight && index < quotes.length){
+        addQuotes();
+    }
+})
+
